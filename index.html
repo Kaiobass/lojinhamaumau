@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodrigues Financeira - Empréstimo e Consignado</title>
+    <style>
+        /* Variáveis de Cores (Fácil de alterar) */
+        :root {
+            --primary-color: #006400; /* Verde Escuro (DarkGreen) */
+            --secondary-color: #25d366; /* Verde WhatsApp */
+            --bg-color: #f4f7f9;
+            --text-color: #333;
+            --light-gray: #eee;
+        }
+
+        /* Estilos Gerais */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* ------------------ CABEÇALHO (LOGO, TÍTULO E BOTÃO INSTAGRAM) ------------------ */
+        .header {
+            background-color: #fff;
+            padding: 15px 50px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Distribui logo/título e botão */
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .logo img {
+            height: 50px; 
+            width: auto;
+            margin-right: 15px;
+        }
+        
+        .header h2 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+
+        /* Botão Instagram */
+        .instagram-button {
+            /* Estilo que remete ao Instagram */
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+        }
+
+        .instagram-button:hover {
+            opacity: 0.9;
+        }
+
+        /* ------------------ CONTAINER PRINCIPAL ------------------ */
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        /* Seções de Imagem e Conteúdo */
+        .image-section, .content-section {
+            flex: 1; 
+            min-width: 300px; 
+            padding: 20px;
+        }
+        
+        /* Imagem da Oferta/Consignado (lado esquerdo) */
+        .image-section-offer img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Imagem do Dono (ao lado da imagem principal) */
+        .image-section-owner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .image-section-owner img {
+            width: 150px; 
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-section-owner p {
+            margin-top: 10px;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 0.9em;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        /* Estilo do Formulário */
+        .solicitation-form label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .solicitation-form input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+
+        /* Botão do WhatsApp (Chamada para Ação) */
+        .whatsapp-button {
+            display: block;
+            width: 100%;
+            padding: 15px 0;
+            margin-top: 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128c7e;
+        }
+
+        .whatsapp-icon {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        /* Media Queries (Mobile) */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+            .header h2 {
+                font-size: 20px;
+            }
+            .instagram-button {
+                padding: 5px 10px;
+                font-size: 0.8em;
+            }
+            .container {
+                margin: 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img 
+                    src="https://snipboard.io/T51M03.jpg" 
+                    alt="Logo Rodrigues Financeira"
+                >
+            </div>
+            <h2>Rodrigues Financeira</h2>
+        </div>
+        
+        <a 
+            href="https://www.instagram.com/rodriguessfinanceira?igsh=MTZvbnJ2NG5hYXAwNw==" 
+            target="_blank" 
+            class="instagram-button"
+        >
+            Nosso Insta 📸
+        </a>
+    </header>
+
+    <div class="container">
+
+        <div class="image-section">
+            
+            <div class="image-section-offer">
+                <img 
+                    src="https://snipboard.io/IRwk7Z.jpg" 
+                    alt="Empréstimo Consignado Rápido e Seguro"
+                >
+            </div>
+
+            <div class="image-section-owner">
+                <img 
+                    src="https://snipboard.io/9WMBsS.jpg" 
+                    alt="Foto do Dono da Rodrigues Financeira"
+                >
+                <p>Responsável: Mauricio Rodrigues </p>
+            </div>
+
+        </div>
+
+        <div class="content-section">
+            <h1>💰 Realize Seu Sonho com a Rodrigues Financeira</h1>
+
+            <p>Preencha os dados para uma pré-análise sem compromisso e descubra as melhores taxas de Empréstimo e Consignado do mercado.</p>
+
+            <form class="solicitation-form">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" placeholder="João"required>
+
+                <label for="telefone">Telefone (DDD + Número):</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
+                
+                <label for="renda">Renda Mensal Aproximada:</label>
+                <input type="text" id="renda" name="renda" placeholder="Ex: R$ 3.500,00">
+            </form>
+
+            <a 
+                href="https://wa.me/557998991111text=Olá%2C%20gostaria%20de%20fazer%20uma%20simulacão%20de%20empréstimo%20consignado." 
+                target="_blank" 
+                class="whatsapp-button"
+            >
+                <span class="whatsapp-icon">💬</span> ENVIAR SOLICITAÇÃO E NEGOCIAR JÁ!
+            </a>
+
+            <p style="text-align: center; margin-top: 20px; font-size: 0.9em; color: #666;">
+                Nossa equipe entrará em contato **imediatamente** para garantir a melhor proposta.
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
