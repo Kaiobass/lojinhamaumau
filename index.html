@@ -5,32 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rodrigues Financeira - Empréstimo e Consignado</title>
     <style>
-        /* Variáveis de Cores (Fácil de alterar) */
+        /* Variáveis e Configurações de Animação */
         :root {
-            --primary-color: #006400; /* Verde Escuro (DarkGreen) */
-            --secondary-color: #25d366; /* Verde WhatsApp */
+            --primary-color: #006400; 
+            --secondary-color: #25d366; 
             --bg-color: #f4f7f9;
             --text-color: #333;
             --light-gray: #eee;
+            --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Estilos Gerais */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--bg-color);
             color: var(--text-color);
+            overflow-x: hidden;
         }
 
-        /* ------------------ CABEÇALHO (LOGO, TÍTULO E BOTÃO INSTAGRAM) ------------------ */
+        /* Cabeçalho */
         .header {
             background-color: #fff;
             padding: 15px 50px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Distribui logo/título e botão */
+            justify-content: space-between;
+            animation: fadeInUp 0.8s ease;
         }
 
         .header-content {
@@ -42,69 +50,81 @@
             height: 50px; 
             width: auto;
             margin-right: 15px;
+            transition: var(--transition-smooth);
+        }
+
+        .header .logo img:hover {
+            transform: scale(1.1) rotate(-3deg);
         }
         
         .header h2 {
             margin: 0;
             color: var(--primary-color);
             font-size: 24px;
+            font-weight: 700;
         }
 
-        /* Botão Instagram */
+        /* Botão Instagram com Efeito Elástico */
         .instagram-button {
-            /* Estilo que remete ao Instagram */
             background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 20px;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 8px;
             font-weight: bold;
-            transition: opacity 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: var(--transition-smooth);
             display: flex;
             align-items: center;
         }
 
         .instagram-button:hover {
-            opacity: 0.9;
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 0 6px 15px rgba(220, 39, 67, 0.3);
+            filter: brightness(1.1);
         }
 
-        /* ------------------ CONTAINER PRINCIPAL ------------------ */
+        /* Container Principal */
         .container {
             max-width: 1100px;
-            margin: 50px auto;
-            padding: 20px;
+            margin: 40px auto;
+            padding: 25px;
             background-color: #fff;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
             display: flex;
             flex-wrap: wrap;
             gap: 40px;
+            animation: fadeInUp 1s ease;
         }
 
-        /* Seções de Imagem e Conteúdo */
         .image-section, .content-section {
             flex: 1; 
             min-width: 300px; 
-            padding: 20px;
+            padding: 10px;
         }
         
-        /* Imagem da Oferta/Consignado (lado esquerdo) */
+        /* Imagens com Zoom Suave */
         .image-section-offer img {
             width: 100%;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition-smooth);
         }
 
-        /* Imagem do Dono (ao lado da imagem principal) */
+        .image-section-offer img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
         .image-section-owner {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .image-section-owner img {
@@ -112,48 +132,61 @@
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--primary-color);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 4px solid #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition-smooth);
+        }
+
+        .image-section-owner img:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-color);
         }
 
         .image-section-owner p {
-            margin-top: 10px;
+            margin-top: 12px;
             font-weight: bold;
             color: var(--primary-color);
-            font-size: 0.9em;
         }
 
         h1 {
             color: var(--primary-color);
-            margin-top: 0;
             border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
+            padding-bottom: 15px;
             text-align: center;
+            font-size: 1.8rem;
         }
 
-        /* Estilo do Formulário */
+        /* Formulário Animado */
         .solicitation-form label {
             display: block;
             margin-top: 15px;
             font-weight: bold;
-            color: var(--text-color);
+            font-size: 0.9rem;
         }
 
         .solicitation-form input {
             width: 100%;
-            padding: 12px;
-            margin-top: 5px;
-            border: 1px solid var(--light-gray);
-            border-radius: 4px;
+            padding: 14px;
+            margin-top: 6px;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
             box-sizing: border-box;
-            background-color: #f9f9f9;
+            background-color: #fcfcfc;
+            transition: var(--transition-smooth);
         }
 
-        /* Botão do WhatsApp (Chamada para Ação) */
+        .solicitation-form input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background-color: #fff;
+            box-shadow: 0 0 8px rgba(0, 100, 0, 0.1);
+        }
+
+        /* Botão do WhatsApp de Alta Conversão */
         .whatsapp-button {
             display: block;
             width: 100%;
-            padding: 15px 0;
+            padding: 18px 0;
             margin-top: 30px;
             background-color: var(--secondary-color);
             color: white;
@@ -161,40 +194,32 @@
             text-decoration: none;
             font-size: 18px;
             font-weight: bold;
-            border-radius: 50px;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: var(--transition-smooth);
         }
 
         .whatsapp-button:hover {
-            background-color: #128c7e;
+            background-color: #1ebe57;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-button:active {
+            transform: scale(0.97);
         }
 
         .whatsapp-icon {
-            margin-right: 10px;
-            font-size: 20px;
+            margin-right: 8px;
         }
 
-        /* Media Queries (Mobile) */
+        /* Media Queries */
         @media (max-width: 768px) {
-            .header {
-                padding: 15px 20px;
-            }
-            .header h2 {
-                font-size: 20px;
-            }
-            .instagram-button {
-                padding: 5px 10px;
-                font-size: 0.8em;
-            }
-            .container {
-                margin: 20px;
-                flex-direction: column;
-                gap: 20px;
-            }
+            .header { padding: 15px 20px; flex-direction: column; gap: 15px; }
+            .container { margin: 15px; padding: 15px; }
         }
-
     </style>
 </head>
 <body>
@@ -202,75 +227,53 @@
     <header class="header">
         <div class="header-content">
             <div class="logo">
-                <img 
-                    src="https://snipboard.io/T51M03.jpg" 
-                    alt="Logo Rodrigues Financeira"
-                >
+                <img src="https://snipboard.io/T51M03.jpg" alt="Logo Rodrigues Financeira">
             </div>
             <h2>Rodrigues Financeira</h2>
         </div>
         
-        <a 
-            href="https://www.instagram.com/rodriguessfinanceira?igsh=MTZvbnJ2NG5hYXAwNw==" 
-            target="_blank" 
-            class="instagram-button"
-        >
+        <a href="https://www.instagram.com/rodriguessfinanceira?igsh=MTZvbnJ2NG5hYXAwNw==" target="_blank" class="instagram-button">
             Nosso Insta 📸
         </a>
     </header>
 
     <div class="container">
-
         <div class="image-section">
-            
             <div class="image-section-offer">
-                <img 
-                    src="https://snipboard.io/IRwk7Z.jpg" 
-                    alt="Empréstimo Consignado Rápido e Seguro"
-                >
+                <img src="https://snipboard.io/IRwk7Z.jpg" alt="Empréstimo Consignado">
             </div>
 
             <div class="image-section-owner">
-                <img 
-                    src="https://snipboard.io/9WMBsS.jpg" 
-                    alt="Foto do Dono da Rodrigues Financeira"
-                >
-                <p>Responsável: Mauricio Rodrigues </p>
+                <img src="https://snipboard.io/9WMBsS.jpg" alt="Mauricio Rodrigues">
+                <p>Responsável: Mauricio Rodrigues</p>
             </div>
-
         </div>
 
         <div class="content-section">
             <h1>💰 Realize Seu Sonho com a Rodrigues Financeira</h1>
-
-            <p>Preencha os dados para uma pré-análise sem compromisso e descubra as melhores taxas de Empréstimo e Consignado do mercado.</p>
+            <p style="text-align: center; color: #555;">Preencha os dados abaixo para uma pré-análise rápida e descubra as melhores taxas do mercado.</p>
 
             <form class="solicitation-form">
                 <label for="nome">Nome Completo:</label>
-                <input type="text" id="nome" name="nome" placeholder="João"required>
+                <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
 
                 <label for="telefone">Telefone (DDD + Número):</label>
-                <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
+                <input type="tel" id="telefone" name="telefone" placeholder="(79) 99999-9999" required>
                 
                 <label for="renda">Renda Mensal Aproximada:</label>
                 <input type="text" id="renda" name="renda" placeholder="Ex: R$ 3.500,00">
             </form>
 
-            <a 
-                href="https://wa.me/5579998991111text=Olá%2C%20gostaria%20de%20fazer%20uma%20simulacão%20de%20empréstimo%20consignado." 
-                target="_blank" 
-                class="whatsapp-button"
-            >
-                <span class="whatsapp-icon">💬</span> ENVIAR SOLICITAÇÃO E NEGOCIAR JÁ!
+            <a href="https://wa.me/557998991111?text=Olá%2C%20gostaria%20de%20fazer%20uma%20simulacão%20de%20empréstimo%20consignado." target="_blank" class="whatsapp-button">
+                <span class="whatsapp-icon">💬</span> ENVIAR E NEGOCIAR JÁ!
             </a>
 
-            <p style="text-align: center; margin-top: 20px; font-size: 0.9em; color: #666;">
-                Nossa equipe entrará em contato **imediatamente** para garantir a melhor proposta.
+            <p style="text-align: center; margin-top: 20px; font-size: 0.85em; color: #888; line-height: 1.4;">
+                🔒 Seus dados estão seguros. <br>
+                Nossa equipe entrará em contato imediatamente.
             </p>
         </div>
-
     </div>
 
 </body>
-
 </html>
